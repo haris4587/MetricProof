@@ -1,0 +1,84 @@
+{
+  "network": {
+    "network": "Studionet",
+    "chainId": 61999,
+    "rpc": "https://studio.genlayer.com/api",
+    "contract": "0x5a9E1836E6734dc0981192a3582b26D02a4743b1",
+    "deploymentTransaction": "0x475d4300eb9a24df21ca0ac80764817d1bc18e7ca25cb44dfe1a954f1f7da255",
+    "explorer": "https://explorer-studio.genlayer.com",
+    "verifiedOn": "2026-10-29"
+  },
+  "policy": {
+    "limits": "100 rows; 24000 UTF-8 bytes; 3 review attempts",
+    "precedence": "integrity/unknown -> INCONCLUSIVE; number mismatch -> INCORRECT; framing/meaning/chart -> MISLEADING; otherwise ACCURATE",
+    "rounding": "nearest 0.001; half ties accepted",
+    "trust": "Accuracy relative to committed data, not certification of real-world truth or issuer identity",
+    "version": "MetricProof/1"
+  },
+  "claim": {
+    "id": "4fde04f463881c11204d8af1c002e9dfb677ff0de5ea3d2ab5a5e419d94d3f1d",
+    "attempts": 1,
+    "chain_id": 61999,
+    "contract": "0x5a9E1836E6734dc0981192a3582b26D02a4743b1",
+    "dataset_id": "cea32274a6f33a9535ee2f9c12149d71d4063501290ff9473d9b8e0556ab60b9",
+    "policy_hash": "90131dfc6554f6151ea5be9512d4ac8d8e162532efb0a1c8b00eca044942192b",
+    "receipt_hash": "2fa8d7d2af5e490206aeb301be97aa45e38f05b9d451f712ebea00ed32a14794",
+    "spec": {
+      "baseline": "2024",
+      "category": "",
+      "chart": {
+        "axis_max": 0,
+        "axis_min": 0,
+        "caption": "",
+        "kind": "none",
+        "unit": "USD"
+      },
+      "claim": "Revenue across all North and South divisions grew by 18% from calendar year 2024 to 2025.",
+      "operation": "GROWTH",
+      "period": "2025",
+      "reported_milli": 18000
+    },
+    "status": "INCONCLUSIVE",
+    "submitter": "0x8838f06FE76fC473e2E073A56F69D5C709720519",
+    "version": "MetricProof/1"
+  },
+  "dataset": {
+    "bytes": 510,
+    "raw": "{\"title\":\"MetricProof zero-baseline fixture\",\"metric\":\"Revenue\",\"unit\":\"USD\",\"scope\":\"All sales across North and South divisions in calendar years 2024 and 2025; same two divisions in each year.\",\"provenance\":\"Synthetic demonstration data created for MetricProof. Not a real company financial statement.\",\"rows\":[{\"period\":\"2024\",\"category\":\"North\",\"value\":0},{\"period\":\"2024\",\"category\":\"South\",\"value\":0},{\"period\":\"2025\",\"category\":\"North\",\"value\":70000},{\"period\":\"2025\",\"category\":\"South\",\"value\":48000}]}",
+    "registrant": "0x8838f06FE76fC473e2E073A56F69D5C709720519",
+    "sha256": "cea32274a6f33a9535ee2f9c12149d71d4063501290ff9473d9b8e0556ab60b9",
+    "url": ""
+  },
+  "history": [
+    {
+      "receipt": {
+        "attempt": 1,
+        "case_id": "4fde04f463881c11204d8af1c002e9dfb677ff0de5ea3d2ab5a5e419d94d3f1d",
+        "dataset_sha256": "cea32274a6f33a9535ee2f9c12149d71d4063501290ff9473d9b8e0556ab60b9",
+        "domain": "MetricProof/1/receipt",
+        "package_hash": "4fde04f463881c11204d8af1c002e9dfb677ff0de5ea3d2ab5a5e419d94d3f1d",
+        "previous": "",
+        "result": {
+          "error": "UNAVAILABLE_OR_UNDEFINED_DATA",
+          "verdict": "INCONCLUSIVE"
+        }
+      },
+      "sha256": "2fa8d7d2af5e490206aeb301be97aa45e38f05b9d451f712ebea00ed32a14794"
+    }
+  ],
+  "verification": {
+    "receipt": {
+      "attempt": 1,
+      "case_id": "4fde04f463881c11204d8af1c002e9dfb677ff0de5ea3d2ab5a5e419d94d3f1d",
+      "dataset_sha256": "cea32274a6f33a9535ee2f9c12149d71d4063501290ff9473d9b8e0556ab60b9",
+      "domain": "MetricProof/1/receipt",
+      "package_hash": "4fde04f463881c11204d8af1c002e9dfb677ff0de5ea3d2ab5a5e419d94d3f1d",
+      "previous": "",
+      "result": {
+        "error": "UNAVAILABLE_OR_UNDEFINED_DATA",
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    "sha256": "2fa8d7d2af5e490206aeb301be97aa45e38f05b9d451f712ebea00ed32a14794"
+  }
+}

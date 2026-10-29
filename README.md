@@ -7,7 +7,7 @@ MetricProof combines independent GenLayer AI interpretation with exact integer a
 - Website: https://metricproof.keenbasil9.chatgpt.site
 - Contract source: [`contracts/metric_proof.py`](contracts/metric_proof.py)
 - Contract: [`0x5a9E1836E6734dc0981192a3582b26D02a4743b1`](https://explorer-studio.genlayer.com/address/0x5a9E1836E6734dc0981192a3582b26D02a4743b1)
-- Deployment: [`0x475d4300…f7da255`](https://explorer-studio.genlayer.com/transactions/0x475d4300eb9a24df21ca0ac80764817d1bc18e7ca25cb44dfe1a954f1f7da255)
+- Deployment: [`0x475d4300…f7da255`](https://explorer-studio.genlayer.com/tx/0x475d4300eb9a24df21ca0ac80764817d1bc18e7ca25cb44dfe1a954f1f7da255)
 - Network: **Studionet, chain 61999**. Development sandbox; state may reset. No mainnet claim.
 
 ## The trust problem
@@ -45,7 +45,7 @@ A hash authenticates the bytes, **not publisher identity, provenance assertions,
 2. Enter the published claim, operation, selectors, reported value and optional bar-chart definition.
 3. Choose a signing mode: **Studio built-in account** uses the exact-call handoff; import the deployed address in [Studio](https://studio.genlayer.com), execute the prepared methods and return the claim ID to the website registry. **Direct website** creates a disposable browser test account; keep the page open.
 4. Register dataset → submit claim → verify. The website reuses an existing dataset, tracks transactions, then reads the contract receipt.
-5. Download the source snapshot, immutable spec, calculation, hashes and network binding as JSON.
+5. Download or copy the source snapshot, immutable spec, calculation, hashes and network binding as JSON.
 
 The contract was deployed through Studio's built-in account. Studio currently has no cross-origin wallet connector or UI key-export control. The website provides an explicit Studio signing handoff and a **separate** ephemeral browser signer using official `genlayer-js` local accounts. It does not claim that signer is the Studio account. No MetaMask, key import, backend signer or funded wallet is needed. Browser keys stay in memory only and are lost on reload. Only the claim submitter can verify or retry, so keep the same account throughout.
 
@@ -70,7 +70,7 @@ Node 22+ and Python 3.12+:
 npm ci
 python -m pip install -r requirements-dev.txt
 genvm-lint check contracts/metric_proof.py
-python -m pytest -p no:gltest tests/test_contract.py -q
+python -m pytest -p no:gltest tests/test_contract.py tests/test_receipts.py -q
 npm test
 npm run build
 npm run dev
@@ -85,3 +85,13 @@ Pinned `genlayer-js` 1.1.8 and the full Python runner hash in the contract heade
 Signed issuer attestations, richer deterministic dimension filters, weighted averages, audited CSV ingestion, authoritative-source adapters and chart pixel binding. These are future work, not current features. New policies require explicit versioning and runtime tests.
 
 Independent project. No official GenLayer or Project Explorer endorsement implied. MIT licensed.
+
+## Verification evidence
+
+See [live evidence](docs/evidence/) for finalized transaction summaries, bound receipts and the byte-for-byte deployed source check. Run `python scripts/verify_receipt.py <downloaded-receipt.json>` to verify dataset, policy, claim and receipt-chain hashes offline. This checks integrity, not network finality.
+
+A deliberately ambiguous prose claim produced validator disagreement. It is preserved as a failed consensus transaction, not reported as an on-chain `INCONCLUSIVE` receipt. The frontend requires both majority agreement and successful execution, including after finalization. The zero-baseline example demonstrates the separate deterministic `INCONCLUSIVE` path.
+
+Studio signing handoff canonicalizes JSON to a single line because Studio string inputs strip line breaks. Its export shows original and derived hashes, and omits the external URL if bytes changed. Use direct website signing to preserve exact uploaded bytes and verify their pinned URL.
+
+Known availability boundary: dataset IDs deduplicate exact bytes globally; the optional source URL is set by the first registration and cannot be replaced. A missing or maliciously registered source can therefore prevent a conclusive review for that dataset ID. It cannot create an accurate certificate. Independent source-channel registration is future work.

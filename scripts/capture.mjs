@@ -1,0 +1,12 @@
+import {createClient} from 'genlayer-js';import{studionet}from'genlayer-js/chains';import fs from'node:fs';import{createHash}from'node:crypto';
+const network=JSON.parse(fs.readFileSync('public/deployment.json')),c=createClient({chain:studionet});
+const read=async(f,args=[])=>JSON.parse(await c.readContract({address:network.contract,functionName:f,args}));
+fs.mkdirSync('docs/evidence',{recursive:true});
+const txEntries=Object.entries(JSON.parse(process.argv[2]||'{}'));
+await Promise.all(txEntries.map(async([name,hash])=>{const t=await c.getTransaction({hash});const o={hash,from_address:t.from_address,to_address:t.to_address,status:t.status,result:t.result,votes:t.consensus_data?.votes,leader_executions:t.consensus_data?.leader_receipt?.map(r=>({execution_result:r.execution_result,error:r.error,return:r.result?.payload?.readable}))};fs.writeFileSync('docs/evidence/'+name+'.json',JSON.stringify(o,null,2));console.log(name,t.status,o.leader_executions?.[0]?.execution_result);}));
+const [policy,list,code]=await Promise.all([read('get_policy'),read('list_cases',[0]),c.getContractCode(network.contract)]);
+const digest=s=>createHash('sha256').update(s).digest('hex');
+const match=digest(code)===digest(fs.readFileSync('contracts/metric_proof.py'));
+fs.writeFileSync('docs/evidence/source-binding.json',JSON.stringify({contract:network.contract,local_sha256:digest(fs.readFileSync('contracts/metric_proof.py')),onchain_sha256:digest(code),match},null,2));
+if(!match)throw Error('Deployed contract code mismatch');
+await Promise.all(list.ids.map(async id=>{const claim={id,...await read('get_case',[id])};if(!claim.attempts)return;const [dataset,history]=await Promise.all([read('get_dataset',[claim.dataset_id]),Promise.all(Array.from({length:claim.attempts},(_,i)=>read('get_receipt',[id,i+1])))]);const bundle={network,policy,claim,dataset,history,verification:history.at(-1)};fs.writeFileSync('docs/evidence/receipt-'+id.slice(0,12)+'.json',JSON.stringify(bundle,null,2));console.log(id,claim.status);}));

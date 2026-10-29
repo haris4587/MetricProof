@@ -1,0 +1,114 @@
+{
+  "network": {
+    "network": "Studionet",
+    "chainId": 61999,
+    "rpc": "https://studio.genlayer.com/api",
+    "contract": "0x5a9E1836E6734dc0981192a3582b26D02a4743b1",
+    "deploymentTransaction": "0x475d4300eb9a24df21ca0ac80764817d1bc18e7ca25cb44dfe1a954f1f7da255",
+    "explorer": "https://explorer-studio.genlayer.com",
+    "verifiedOn": "2026-10-29"
+  },
+  "policy": {
+    "limits": "100 rows; 24000 UTF-8 bytes; 3 review attempts",
+    "precedence": "integrity/unknown -> INCONCLUSIVE; number mismatch -> INCORRECT; framing/meaning/chart -> MISLEADING; otherwise ACCURATE",
+    "rounding": "nearest 0.001; half ties accepted",
+    "trust": "Accuracy relative to committed data, not certification of real-world truth or issuer identity",
+    "version": "MetricProof/1"
+  },
+  "claim": {
+    "id": "293c5d7c0090e1dd6ecbb220e626fb0fbc7271af10f63bf414add3a8195a0876",
+    "attempts": 1,
+    "chain_id": 61999,
+    "contract": "0x5a9E1836E6734dc0981192a3582b26D02a4743b1",
+    "dataset_id": "059afb05b4ed787b033c0b11b6f36a6c6df1ab02412e58b06d528d312b254c61",
+    "policy_hash": "90131dfc6554f6151ea5be9512d4ac8d8e162532efb0a1c8b00eca044942192b",
+    "receipt_hash": "b3b58221a5c99170e15921303683b57a86760fc6c486730468905c296f50cdcb",
+    "spec": {
+      "baseline": "2024",
+      "category": "",
+      "chart": {
+        "axis_max": 0,
+        "axis_min": 0,
+        "caption": "",
+        "kind": "none",
+        "unit": "USD"
+      },
+      "claim": "Revenue across all North and South divisions grew by 45% from calendar year 2024 to 2025.",
+      "operation": "GROWTH",
+      "period": "2025",
+      "reported_milli": 45000
+    },
+    "status": "INCORRECT",
+    "submitter": "0xFfCf285a51287A60B01817f2515E03F17cd4A936",
+    "version": "MetricProof/1"
+  },
+  "dataset": {
+    "bytes": 523,
+    "raw": "{\"title\":\"MetricProof synthetic revenue fixture\",\"metric\":\"Revenue\",\"unit\":\"USD\",\"scope\":\"All sales across North and South divisions in calendar years 2024 and 2025; same two divisions in each year.\",\"provenance\":\"Synthetic demonstration data created for MetricProof. Not a real company financial statement.\",\"rows\":[{\"period\":\"2024\",\"category\":\"North\",\"value\":60000},{\"period\":\"2024\",\"category\":\"South\",\"value\":40000},{\"period\":\"2025\",\"category\":\"North\",\"value\":70000},{\"period\":\"2025\",\"category\":\"South\",\"value\":48000}]}\n",
+    "registrant": "0xFfCf285a51287A60B01817f2515E03F17cd4A936",
+    "sha256": "059afb05b4ed787b033c0b11b6f36a6c6df1ab02412e58b06d528d312b254c61",
+    "url": "https://raw.githubusercontent.com/haris4587/MetricProof/99e1997455eac2419183afa8701f13a551620011/fixtures/revenue.json"
+  },
+  "history": [
+    {
+      "receipt": {
+        "attempt": 1,
+        "case_id": "293c5d7c0090e1dd6ecbb220e626fb0fbc7271af10f63bf414add3a8195a0876",
+        "dataset_sha256": "059afb05b4ed787b033c0b11b6f36a6c6df1ab02412e58b06d528d312b254c61",
+        "domain": "MetricProof/1/receipt",
+        "package_hash": "293c5d7c0090e1dd6ecbb220e626fb0fbc7271af10f63bf414add3a8195a0876",
+        "previous": "",
+        "result": {
+          "calculation": {
+            "baseline_total": 100000,
+            "chart_flags": [],
+            "current_total": 118000,
+            "denominator": 100000,
+            "number_matches": false,
+            "numerator": 1800000,
+            "row_count": 2,
+            "unit": "%"
+          },
+          "dataset_sha256": "059afb05b4ed787b033c0b11b6f36a6c6df1ab02412e58b06d528d312b254c61",
+          "semantic": {
+            "framing": "FAIR",
+            "meaning": "MATCH",
+            "quote": "Revenue across all North and South divisions grew by 45% from calendar year 2024 to 2025."
+          },
+          "verdict": "INCORRECT"
+        }
+      },
+      "sha256": "b3b58221a5c99170e15921303683b57a86760fc6c486730468905c296f50cdcb"
+    }
+  ],
+  "verification": {
+    "receipt": {
+      "attempt": 1,
+      "case_id": "293c5d7c0090e1dd6ecbb220e626fb0fbc7271af10f63bf414add3a8195a0876",
+      "dataset_sha256": "059afb05b4ed787b033c0b11b6f36a6c6df1ab02412e58b06d528d312b254c61",
+      "domain": "MetricProof/1/receipt",
+      "package_hash": "293c5d7c0090e1dd6ecbb220e626fb0fbc7271af10f63bf414add3a8195a0876",
+      "previous": "",
+      "result": {
+        "calculation": {
+          "baseline_total": 100000,
+          "chart_flags": [],
+          "current_total": 118000,
+          "denominator": 100000,
+          "number_matches": false,
+          "numerator": 1800000,
+          "row_count": 2,
+          "unit": "%"
+        },
+        "dataset_sha256": "059afb05b4ed787b033c0b11b6f36a6c6df1ab02412e58b06d528d312b254c61",
+        "semantic": {
+          "framing": "FAIR",
+          "meaning": "MATCH",
+          "quote": "Revenue across all North and South divisions grew by 45% from calendar year 2024 to 2025."
+        },
+        "verdict": "INCORRECT"
+      }
+    },
+    "sha256": "b3b58221a5c99170e15921303683b57a86760fc6c486730468905c296f50cdcb"
+  }
+}

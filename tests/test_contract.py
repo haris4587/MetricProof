@@ -129,3 +129,20 @@ def test_mismatched_cohort(ctx):
     _,c=ctx;d=json.loads(RAW);d['rows'][0]['category']='Other'
     did=c.register_dataset(json.dumps(d),'')
     with pytest.raises(Exception):c.submit_claim(did,json.dumps(spec()))
+
+def test_decline(ctx):
+    vm,c=ctx;mock(vm);s=spec(-15254);s['period'],s['baseline']='2024','2025'
+    _,cid=register(c,s);c.verify(cid)
+    r=json.loads(c.get_receipt(cid,1))['receipt']['result']
+    assert r['verdict']=='ACCURATE' and r['calculation']['numerator']==-1800000
+
+def test_invalid_ai_quote_fails_closed(ctx):
+    vm,c=ctx;vm.mock_llm('.*',json.dumps({'meaning':'MATCH','framing':'FAIR','quote':'not in claim'}))
+    _,cid=register(c);c.verify(cid)
+    assert json.loads(c.get_case(cid))['status']=='INCONCLUSIVE'
+
+def test_rounding_half_tie(ctx):
+    vm,c=ctx;mock(vm);d=json.loads(RAW);d['rows']=[{'period':'2025','category':str(n),'value':int(n==0)} for n in range(16)]
+    did=c.register_dataset(json.dumps(d),'');s=spec(62);s.update(operation='AVERAGE',baseline='')
+    cid=c.submit_claim(did,json.dumps(s));c.verify(cid)
+    assert json.loads(c.get_case(cid))['status']=='ACCURATE' # 1/16 = 0.0625, distance exactly 0.0005

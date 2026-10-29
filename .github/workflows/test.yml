@@ -21,4 +21,4 @@ jobs:
         run: |
           mkdir -p ~/.cache/gltest-direct
           cp ~/.cache/genvm-linter/genvm-universal-*.tar.xz ~/.cache/gltest-direct/
-      - run: python -m pytest -p no:gltest tests/test_contract.py -q
+      - run: python -m pytest -p no:gltest tests/test_contract.py tests/test_receipts.py -q
