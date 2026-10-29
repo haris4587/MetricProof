@@ -1,0 +1,12 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {txState,canonical,hash,milli} from '../lifecycle.mjs';
+const receipt=execution=>({consensus_data:{leader_receipt:[{execution_result:execution}]}});
+test('accepted with execution success is provisional',()=>{assert.deepEqual(txState({status:'ACCEPTED',...receipt('SUCCESS')}),{status:'ACCEPTED',failed:false,committed:true,final:false,execution:'SUCCESS',error:''});});
+test('accepted revert is failure',()=>assert.equal(txState({status:'ACCEPTED',...receipt('ERROR')}).failed,true));
+test('finalized revert never becomes success',()=>assert.equal(txState({status:7,...receipt('ERROR')}).committed,false));
+test('pending is unresolved',()=>assert.equal(txState({status:'PENDING'}).committed,false));
+test('finalized success',()=>assert.equal(txState({status:7,...receipt('SUCCESS')}).final,true));
+test('cancelled and undetermined are terminal errors',()=>{for(const status of ['CANCELED','UNDETERMINED','LEADER_TIMEOUT','VALIDATORS_TIMEOUT'])assert.equal(txState({status}).failed,true);});
+test('missing execution result cannot certify success',()=>assert.equal(txState({status:'FINALIZED'}).committed,false));
+test('canonical JSON matches Python ensure_ascii',()=>assert.equal(canonical({z:'é\u007f😀',a:2}),'本文'.length===2?'{"a":2,"z":"\\u00e9\\u007f\\ud83d\\ude00"}':''));
+test('sha256 exact bytes',async()=>assert.equal(await hash('abc'),'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'));
+test('fixed point parsing',()=>{assert.equal(milli('45.12'),45120);assert.equal(milli('-0.001'),-1);for(const v of ['1.0001','NaN','1e4','9007199254740991'])assert.throws(()=>milli(v));});

@@ -1,0 +1,27 @@
+{
+  "hash": "0x475d4300eb9a24df21ca0ac80764817d1bc18e7ca25cb44dfe1a954f1f7da255",
+  "from_address": "0x82068B31B55f93A94cd9Ce4BB4B492a493Ad6f14",
+  "to_address": "0x5a9E1836E6734dc0981192a3582b26D02a4743b1",
+  "status": 7,
+  "result": 6,
+  "created_at": "2026-10-29T02:46:28.227737+00:00",
+  "votes": {
+    "0x4868b172ddEBC18b5219aaCeAB77ae0Df330c83A": "idle",
+    "0xB4EE99165ffe987E64B7b72e45a753309c501eef": "idle",
+    "0xF7D08d12dB37D3e02D1833b5cB7e56B07F114186": "agree",
+    "0xb9ed1258763dfFC83356b15e8A20236B86E42ba2": "agree",
+    "0xe06A34A1eBd398AF3399d08593B8c3C433CdD947": "agree"
+  },
+  "leader_executions": [
+    {
+      "execution_result": "SUCCESS",
+      "error": null,
+      "return": "null"
+    },
+    {
+      "execution_result": "SUCCESS",
+      "error": null,
+      "return": "null"
+    }
+  ]
+}

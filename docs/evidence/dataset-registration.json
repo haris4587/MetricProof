@@ -1,0 +1,27 @@
+{
+  "hash": "0x8ec8cd892308b392edccea1807391a599100b6d9979b42df24ea30c11c2be63c",
+  "from_address": "0x82068B31B55f93A94cd9Ce4BB4B492a493Ad6f14",
+  "to_address": "0x5a9E1836E6734dc0981192a3582b26D02a4743b1",
+  "status": 7,
+  "result": 6,
+  "created_at": "2026-10-29T02:53:47.604987+00:00",
+  "votes": {
+    "0x045291B293B9D68969c18B6637A8258038cf787A": "agree",
+    "0xF7D08d12dB37D3e02D1833b5cB7e56B07F114186": "idle",
+    "0xb04cdDC4a6Ff6A0aDF715cfe00Fa307b901cebD4": "idle",
+    "0xcab45E3fe9cC9592B5C378E47734E022b7Df80c9": "agree",
+    "0xe06A34A1eBd398AF3399d08593B8c3C433CdD947": "agree"
+  },
+  "leader_executions": [
+    {
+      "execution_result": "SUCCESS",
+      "error": null,
+      "return": "\"f85597fd733e6de2283db1bc26b90c7fd4ebb5b984d42e8da30bfe2a3c643808\""
+    },
+    {
+      "execution_result": "SUCCESS",
+      "error": null,
+      "return": "\"f85597fd733e6de2283db1bc26b90c7fd4ebb5b984d42e8da30bfe2a3c643808\""
+    }
+  ]
+}

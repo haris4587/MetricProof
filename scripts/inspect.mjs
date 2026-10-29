@@ -1,0 +1,10 @@
+import {createClient} from 'genlayer-js';
+import {studionet} from 'genlayer-js/chains';
+import fs from 'node:fs';
+const d=JSON.parse(fs.readFileSync('public/deployment.json'));
+const c=createClient({chain:studionet});
+const tx=await c.getTransaction({hash:process.argv[2]||d.deploymentTransaction});
+fs.mkdirSync('docs/evidence',{recursive:true});
+fs.writeFileSync('docs/evidence/'+(process.argv[3]||'deployment')+'.json',JSON.stringify(tx,(_,v)=>typeof v==='bigint'?v.toString():v,2));
+console.log(JSON.stringify({status:tx.status,result:tx.txExecutionResultName,votes:tx.consensus_data?.votes,leader:tx.consensus_data?.leader_receipt?.map(r=>({execution:r.execution_result,result:r.result,error:r.error}))}));
+console.log(await c.readContract({address:d.contract,functionName:'get_policy',args:[]}));
